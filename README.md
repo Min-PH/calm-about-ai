@@ -1,7 +1,7 @@
 # Calm About AI: How Ready Are You?
 
 A 3-minute check of everyday AI habits. 15 questions drawn from a 40-item bank, a short takeaway after each answer, and a friendly result level.
-Based on the textbook *AI in Public Health* by Min Wu (Springer, 2026).
+Based on the textbook *Artificial Intelligence in Public Health* by Min Wu (Springer, 2026).
 
 An informal self-check, not a formal assessment.
 
