@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calm About AI</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: one calm centered column; one question per screen; progress as 15 dots grouped by chapter. */
+:root {
+  --bg: #eef3f4;        /* cool mist */
+  --surface: #ffffff;
+  --ink: #1d2b33;
+  --muted: #5b6b74;
+  --line: #d3dee2;
+  --accent: #2c6a86;    /* lake blue */
+  --accent-ink: #ffffff;
+  --right: #2f7a55;
+  --right-bg: #e3f2ea;
+  --wrong: #a8513c;
+  --wrong-bg: #f8e9e4;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121b20; --surface: #1a262c; --ink: #e4ecef; --muted: #9db0b8; --line: #2c3d45;
+    --accent: #7fbad3; --accent-ink: #0f1a1f; --right: #7cc9a0; --right-bg: #1b3328;
+    --wrong: #e39a85; --wrong-bg: #3a2420; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121b20; --surface: #1a262c; --ink: #e4ecef; --muted: #9db0b8; --line: #2c3d45;
+  --accent: #7fbad3; --accent-ink: #0f1a1f; --right: #7cc9a0; --right-bg: #1b3328;
+  --wrong: #e39a85; --wrong-bg: #3a2420; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 56px;
+}
+main { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+h1, h2 { font-family: var(--serif); font-weight: 600; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 6vw, 2.6rem); line-height: 1.15; }
+h2 { font-size: clamp(1.3rem, 4.2vw, 1.6rem); line-height: 1.3; }
+p { margin: 0; }
+.eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 1.1rem; color: var(--muted); max-width: 34em; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 0.92rem; }
+.note { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+.btn {
+  font: inherit; font-weight: 600; border: 0; border-radius: 999px; cursor: pointer;
+  background: var(--accent); color: var(--accent-ink); padding: 12px 26px; align-self: flex-start;
+  text-decoration: none; text-align: center;
+}
+.btn.ghost { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
+.btn:focus-visible, .opt:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+a { color: var(--accent); }
+
+/* progress */
+.progress { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+.group { display: flex; gap: 5px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.dot.now { background: var(--accent); }
+.dot.ok { background: var(--right); }
+.dot.no { background: var(--wrong); }
+.count { margin-left: auto; font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* question */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 18px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  font: inherit; text-align: left; width: 100%; cursor: pointer; color: var(--ink);
+  background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 13px 16px;
+  display: flex; gap: 12px; align-items: baseline;
+}
+.opt:hover:not(:disabled) { border-color: var(--accent); }
+.opt:disabled { cursor: default; }
+.opt .key { font-weight: 600; color: var(--muted); min-width: 1ch; }
+.opt.right { border-color: var(--right); background: var(--right-bg); }
+.opt.wrong { border-color: var(--wrong); background: var(--wrong-bg); }
+.opt.dim { opacity: 0.55; }
+.takeaway { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; display: flex; flex-direction: column; gap: 4px; }
+.verdict { font-weight: 600; }
+.verdict.ok { color: var(--right); }
+.verdict.no { color: var(--wrong); }
+.row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+/* result */
+.score { font-family: var(--serif); font-size: clamp(3rem, 12vw, 4.2rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.score small { font-size: 0.4em; color: var(--muted); }
+.level { font-size: 1.05rem; font-weight: 600; color: var(--accent); }
+.scale { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.scale span { font-size: 0.72rem; color: var(--muted); padding-top: 8px; border-top: 4px solid var(--line); }
+.scale span.on { color: var(--ink); font-weight: 600; border-top-color: var(--accent); }
+.breakdown { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.breakdown li { display: flex; justify-content: space-between; gap: 12px; font-size: 0.95rem; border-bottom: 1px dashed var(--line); padding-bottom: 6px; }
+.breakdown b { font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: no-preference) {
+  .card, .takeaway { animation: rise .25s ease-out; }
+  @keyframes rise { from { transform: translateY(6px); opacity: .6; } to { transform: none; opacity: 1; } }
+}
+</style>
+</head>
+<body>
+
+
+<main id="app">
+  <section id="start">
+    <div class="card" style="gap:20px">
+      <p class="eyebrow">For students and health professionals</p>
+      <h1>Calm About AI: How Ready Are You?</h1>
+      <p class="lede">A 3-minute check of your everyday AI habits. Based on the textbook <i>AI in Public Health</i> by Min Wu (Springer, 2026).</p>
+      <div class="facts"><span>15 questions</span><span>About 3 minutes</span><span>A short takeaway after each answer</span></div>
+      <button class="btn" id="go" type="button" disabled>Loading questions…</button>
+      <p class="note" id="note">An informal self-check, not a formal assessment.</p>
+    </div>
+  </section>
+
+  <section id="quiz" hidden>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+    <div class="card" id="qcard">
+      <p class="eyebrow" id="qch"></p>
+      <h2 id="qstem"></h2>
+      <div class="opts" id="opts"></div>
+      <div class="takeaway" id="take" hidden>
+        <span class="verdict" id="verdict"></span>
+        <span id="expl"></span>
+      </div>
+      <div class="row"><button class="btn" id="next" type="button" hidden>Next</button></div>
+    </div>
+  </section>
+
+  <section id="result" hidden>
+    <div class="card" style="gap:20px">
+      <p class="eyebrow">Your result</p>
+      <div class="score" id="score"></div>
+      <div class="scale" id="scale"></div>
+      <h2 id="rlabel"></h2>
+      <p id="rfeedback"></p>
+      <p class="level" id="rnext"></p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <p class="eyebrow">By topic</p>
+        <ul class="breakdown" id="breakdown"></ul>
+      </div>
+      <div class="row">
+        <button class="btn" id="again" type="button">Take it again</button>
+        <a class="btn ghost" href="https://ai-public-health.com" target="_blank" rel="noopener">More at ai-public-health.com</a>
+      </div>
+      <p class="note">Each try draws a new set of questions. An informal self-check, not a formal assessment.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+/* Optional: paste your Google Apps Script web-app URL here to record anonymous right/wrong answers. */
+const LOG_URL = "";
+
+const TOPICS = { Ch1: "What AI is", Ch2: "How AI works", Ch5: "Data behind AI", Ch9: "Trusting and using AI" };
+const $ = id => document.getElementById(id);
+let bank, test = [], i = 0, results = [];
+
+const shuffle = a => { a = a.slice(); for (let k = a.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [a[k], a[j]] = [a[j], a[k]]; } return a; };
+
+function draw() {
+  const picked = [];
+  for (const [ch, n] of Object.entries(bank.draw_per_test)) {
+    picked.push(...shuffle(bank.items.filter(it => it.chapter === ch)).slice(0, n));
+  }
+  return picked.map(it => {           // shuffle options for multiple choice; keep True/False order
+    if (it.type === "tf") return { ...it };
+    const order = shuffle(it.options.map((_, k) => k));
+    return { ...it, options: order.map(k => it.options[k]), answer: order.indexOf(it.answer) };
+  });
+}
+
+function show(id) { for (const s of ["start", "quiz", "result"]) $(s).hidden = s !== id; window.scrollTo(0, 0); }
+
+function renderProgress() {
+  const box = $("progress"); box.innerHTML = "";
+  let idx = 0;
+  for (const ch of Object.keys(bank.draw_per_test)) {
+    const g = document.createElement("div"); g.className = "group";
+    test.forEach((q, k) => {
+      if (q.chapter !== ch) return;
+      const d = document.createElement("span"); d.className = "dot";
+      if (k < results.length) d.classList.add(results[k] ? "ok" : "no");
+      else if (k === i) d.classList.add("now");
+      g.appendChild(d); idx++;
+    });
+    box.appendChild(g);
+  }
+  const c = document.createElement("span"); c.className = "count";
+  c.textContent = `${Math.min(i + 1, test.length)} of ${test.length}`;
+  box.appendChild(c);
+}
+
+function renderQ() {
+  const q = test[i];
+  renderProgress();
+  $("qch").textContent = TOPICS[q.chapter] || q.chapter;
+  $("qstem").textContent = q.stem;
+  $("take").hidden = true; $("next").hidden = true;
+  const box = $("opts"); box.innerHTML = "";
+  q.options.forEach((o, k) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "opt"; b.id = `opt-${k}`;
+    b.innerHTML = `<span class="key">${"ABC"[k]}</span><span></span>`;
+    b.lastChild.textContent = o;
+    b.addEventListener("click", () => answer(k));
+    box.appendChild(b);
+  });
+  $("qcard").style.animation = "none"; void $("qcard").offsetWidth; $("qcard").style.animation = "";
+}
+
+function answer(k) {
+  const q = test[i], ok = k === q.answer;
+  results.push(ok);
+  [...$("opts").children].forEach((b, n) => {
+    b.disabled = true;
+    if (n === q.answer) b.classList.add("right");
+    else if (n === k) b.classList.add("wrong");
+    else b.classList.add("dim");
+  });
+  $("verdict").textContent = ok ? "Right." : "Not quite.";
+  $("verdict").className = "verdict " + (ok ? "ok" : "no");
+  $("expl").textContent = q.explanation;
+  $("take").hidden = false;
+  $("next").textContent = i === test.length - 1 ? "See my result" : "Next";
+  $("next").hidden = false; $("next").focus();
+  renderProgress();
+}
+
+function finish() {
+  const score = results.filter(Boolean).length;
+  const lv = bank.levels.find(l => score >= l.min && score <= l.max);
+  $("score").innerHTML = `${score}<small> / ${test.length}</small>`;
+  $("scale").innerHTML = bank.levels.map(l => `<span class="${l === lv ? "on" : ""}">${l.label}</span>`).join("");
+  $("rlabel").textContent = lv.label;
+  $("rfeedback").textContent = lv.feedback;
+  $("rnext").textContent = "Next read: " + lv.next_read;
+  $("breakdown").innerHTML = "";
+  for (const ch of Object.keys(bank.draw_per_test)) {
+    const ks = test.map((q, k) => q.chapter === ch ? k : -1).filter(k => k >= 0);
+    const li = document.createElement("li");
+    li.innerHTML = `<span></span><b>${ks.filter(k => results[k]).length} / ${ks.length}</b>`;
+    li.firstChild.textContent = TOPICS[ch] || ch;
+    $("breakdown").appendChild(li);
+  }
+  show("result");
+  log(score, lv.label);
+}
+
+function log(score, level) {
+  if (!LOG_URL) return;
+  const row = { bank_version: bank.bank_version, score, level,
+    items: test.map(q => q.id).join(" "), correct: results.map(r => r ? 1 : 0).join("") };
+  try { fetch(LOG_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(row) }).catch(() => {}); } catch (e) {}
+}
+
+function start() { test = draw(); i = 0; results = []; show("quiz"); renderQ(); }
+
+$("go").addEventListener("click", start);
+$("again").addEventListener("click", start);
+$("next").addEventListener("click", () => { i++; if (i < test.length) renderQ(); else finish(); });
+
+fetch("items.json").then(r => r.json()).then(data => {
+  bank = data;
+  $("go").disabled = false; $("go").textContent = "Start";
+  if (LOG_URL) $("note").textContent = "An informal self-check, not a formal assessment. Answers are recorded anonymously to improve the questions. No names or emails are collected.";
+}).catch(() => {
+  $("go").textContent = "Questions could not load";
+  $("note").textContent = "The question file (items.json) is missing or unreadable. Check that it sits next to this page.";
+});
+</script>
+
+</body>
+</html>
