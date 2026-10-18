@@ -1,0 +1,560 @@
+{
+  "bank_version": "0.2",
+  "title": "Calm About AI: How Ready Are You?",
+  "subtitle": "A 3-minute check of your everyday AI habits. Based on the textbook Artificial Intelligence in Public Health by Min Wu (Springer, 2026).",
+  "note": "An informal self-check, not a formal assessment.",
+  "draw_per_test": {
+    "Ch1": 1,
+    "Ch2": 5,
+    "Ch5": 5,
+    "Ch9": 4
+  },
+  "levels": [
+    {
+      "min": 0,
+      "max": 5,
+      "label": "Just Starting",
+      "feedback": "AI can feel overwhelming, and that's normal. Start with one habit: when an AI answer matters, check it with another source.",
+      "next_read": "Chapter 1 (what AI is) and Chapter 9 (trusting AI)"
+    },
+    {
+      "min": 6,
+      "max": 9,
+      "label": "Curious",
+      "feedback": "You know the basics. Next habit: before trusting an AI tool, ask where its data came from and who might be missing.",
+      "next_read": "Chapter 5 (data issues)"
+    },
+    {
+      "min": 10,
+      "max": 12,
+      "label": "Careful User",
+      "feedback": "You use AI with good judgment. Keep tasting the dish: ask why, check, then decide yourself.",
+      "next_read": "Chapter 2 (how AI works inside)"
+    },
+    {
+      "min": 13,
+      "max": 15,
+      "label": "Calm Navigator",
+      "feedback": "You're ready for the AI era. You know when to trust AI, when to say no, and that you stay responsible. Share these habits with others.",
+      "next_read": "The full book, or help a colleague take this check"
+    }
+  ],
+  "items": [
+    {
+      "id": "C1-01",
+      "chapter": "Ch1",
+      "type": "mc",
+      "stem": "A chatbot cites a study that doesn't exist. This is called a...",
+      "options": [
+        "Hallucination",
+        "Virus",
+        "Typo"
+      ],
+      "answer": 0,
+      "explanation": "AI can make things up and present them as real."
+    },
+    {
+      "id": "C1-02",
+      "chapter": "Ch1",
+      "type": "mc",
+      "stem": "AI hallucinations usually sound...",
+      "options": [
+        "Obviously wrong",
+        "As confident as true answers",
+        "Unsure and hesitant"
+      ],
+      "answer": 1,
+      "explanation": "That's why they're easy to miss. Check before you trust."
+    },
+    {
+      "id": "C1-03",
+      "chapter": "Ch1",
+      "type": "mc",
+      "stem": "Giving a chatbot your own trusted documents to answer from is called...",
+      "options": [
+        "Hacking",
+        "Retraining the model",
+        "RAG (retrieval-augmented generation)"
+      ],
+      "answer": 2,
+      "explanation": "RAG points the AI to sources you choose."
+    },
+    {
+      "id": "C1-04",
+      "chapter": "Ch1",
+      "type": "tf",
+      "stem": "True or false: Even with RAG, you should still check the answer.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "True. RAG reduces mistakes but doesn't remove them."
+    },
+    {
+      "id": "C2-01",
+      "chapter": "Ch2",
+      "type": "mc",
+      "stem": "\"IF blood pressure > 140/90, THEN flag hypertension.\" Who wrote this rule?",
+      "options": [
+        "People",
+        "The AI",
+        "The patient"
+      ],
+      "answer": 0,
+      "explanation": "Rule-based systems follow rules written by experts."
+    },
+    {
+      "id": "C2-02",
+      "chapter": "Ch2",
+      "type": "mc",
+      "stem": "In machine learning, who writes the rules?",
+      "options": [
+        "Programmers, by hand",
+        "The machine, from examples",
+        "No one; there are no rules"
+      ],
+      "answer": 1,
+      "explanation": "People wrote rules; machine learning learns them from data."
+    },
+    {
+      "id": "C2-03",
+      "chapter": "Ch2",
+      "type": "mc",
+      "stem": "Rule-based systems are easy to...",
+      "options": [
+        "Update by themselves",
+        "Train on big data",
+        "Explain"
+      ],
+      "answer": 2,
+      "explanation": "You can read the rule. But someone must rewrite it by hand."
+    },
+    {
+      "id": "C2-04",
+      "chapter": "Ch2",
+      "type": "mc",
+      "stem": "A no-show model learns from past appointments marked...",
+      "options": [
+        "Showed or no-show",
+        "Paid or unpaid",
+        "Morning or afternoon"
+      ],
+      "answer": 0,
+      "explanation": "AI learns from examples where the answer is already known."
+    },
+    {
+      "id": "C2-05",
+      "chapter": "Ch2",
+      "type": "mc",
+      "stem": "Testing a model on new patients checks whether it...",
+      "options": [
+        "Runs faster",
+        "Works beyond what it learned from",
+        "Has fewer rules"
+      ],
+      "answer": 1,
+      "explanation": "Doing well on old data doesn't guarantee doing well on new data."
+    },
+    {
+      "id": "C2-06",
+      "chapter": "Ch2",
+      "type": "mc",
+      "stem": "A neural network learns by adjusting its...",
+      "options": [
+        "Screen size",
+        "Users",
+        "Weights"
+      ],
+      "answer": 2,
+      "explanation": "The weights are its recipe, tuned during training."
+    },
+    {
+      "id": "C2-07",
+      "chapter": "Ch2",
+      "type": "mc",
+      "stem": "An AI trained only at big-city hospitals may struggle at...",
+      "options": [
+        "A small rural clinic",
+        "The same big-city hospitals",
+        "Every hospital equally"
+      ],
+      "answer": 0,
+      "explanation": "AI suits situations it has seen, not new ones."
+    },
+    {
+      "id": "C2-08",
+      "chapter": "Ch2",
+      "type": "mc",
+      "stem": "\"Black box\" means...",
+      "options": [
+        "The AI is turned off",
+        "It's hard to see how AI decides",
+        "The AI is kept secret by law"
+      ],
+      "answer": 1,
+      "explanation": "This is why many doctors hesitate to trust AI."
+    },
+    {
+      "id": "C2-09",
+      "chapter": "Ch2",
+      "type": "mc",
+      "stem": "The \"deep\" in deep learning means...",
+      "options": [
+        "Deep thinking, like humans",
+        "Deeply private data",
+        "Many layers"
+      ],
+      "answer": 2,
+      "explanation": "More layers let the network learn richer patterns."
+    },
+    {
+      "id": "C2-10",
+      "chapter": "Ch2",
+      "type": "mc",
+      "stem": "Transformers, the engine behind chatbots, read each word in...",
+      "options": [
+        "Context",
+        "Alphabetical order",
+        "Isolation, one word at a time"
+      ],
+      "answer": 0,
+      "explanation": "Self-attention lets each word look at the words around it."
+    },
+    {
+      "id": "C2-11",
+      "chapter": "Ch2",
+      "type": "mc",
+      "stem": "ChatGPT is...",
+      "options": [
+        "The inventor of AI",
+        "An app built on GPT models",
+        "A type of computer chip"
+      ],
+      "answer": 1,
+      "explanation": "Transformer = design, GPT = model family, ChatGPT = app."
+    },
+    {
+      "id": "C2-12",
+      "chapter": "Ch2",
+      "type": "tf",
+      "stem": "True or false: A chatbot's fluent answer proves it understands like a human.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "False. It's still a neural network trained on data."
+    },
+    {
+      "id": "C2-13",
+      "chapter": "Ch2",
+      "type": "mc",
+      "stem": "Public health problems are messy, so AI often combines...",
+      "options": [
+        "Only rules",
+        "Only data",
+        "Rules and data"
+      ],
+      "answer": 2,
+      "explanation": "Rules keep policy and fairness; data finds new patterns."
+    },
+    {
+      "id": "C5-01",
+      "chapter": "Ch5",
+      "type": "mc",
+      "stem": "AI is only as good as its...",
+      "options": [
+        "Data",
+        "Screen",
+        "Price"
+      ],
+      "answer": 0,
+      "explanation": "Data writes the recipe."
+    },
+    {
+      "id": "C5-02",
+      "chapter": "Ch5",
+      "type": "mc",
+      "stem": "Garbage in, ...",
+      "options": [
+        "Gold out",
+        "Garbage out",
+        "Nothing out"
+      ],
+      "answer": 1,
+      "explanation": "AI learns from whatever it gets, good or bad."
+    },
+    {
+      "id": "C5-03",
+      "chapter": "Ch5",
+      "type": "mc",
+      "stem": "A nurse types blood pressure 410/80 instead of 140/80. The AI will likely...",
+      "options": [
+        "Fix the typo itself",
+        "Not be affected",
+        "Give a wrong answer for this patient"
+      ],
+      "answer": 2,
+      "explanation": "Bad data can enter twice: in training and in today's entry."
+    },
+    {
+      "id": "C5-04",
+      "chapter": "Ch5",
+      "type": "mc",
+      "stem": "Which is \"story\" (unstructured) data?",
+      "options": [
+        "A doctor's note",
+        "A billing code",
+        "An appointment time"
+      ],
+      "answer": 0,
+      "explanation": "Notes, images and recordings are stories; codes and times are forms."
+    },
+    {
+      "id": "C5-05",
+      "chapter": "Ch5",
+      "type": "mc",
+      "stem": "During a flu outbreak, data that arrives weeks late is...",
+      "options": [
+        "The most useful",
+        "Much less useful",
+        "Just as good as real-time"
+      ],
+      "answer": 1,
+      "explanation": "In fast events, timing matters as much as accuracy."
+    },
+    {
+      "id": "C5-06",
+      "chapter": "Ch5",
+      "type": "mc",
+      "stem": "\"John Smith\" and \"Jon Smith\" have the same birthday. You should...",
+      "options": [
+        "Keep two records",
+        "Delete both",
+        "Check and merge if it's one person"
+      ],
+      "answer": 2,
+      "explanation": "Duplicates split a patient's history. Clean data starts at the front desk."
+    },
+    {
+      "id": "C5-07",
+      "chapter": "Ch5",
+      "type": "mc",
+      "stem": "To predict hospital readmissions, which data helps most?",
+      "options": [
+        "Past visits and diagnoses",
+        "Parking garage data",
+        "Cafeteria menus"
+      ],
+      "answer": 0,
+      "explanation": "Useful data must fit the question."
+    },
+    {
+      "id": "C5-08",
+      "chapter": "Ch5",
+      "type": "mc",
+      "stem": "A vendor's AI worked well at other hospitals. What should you do first?",
+      "options": [
+        "Trust the vendor's numbers",
+        "Test it on your own patients",
+        "Turn it on for everyone"
+      ],
+      "answer": 1,
+      "explanation": "A popular sepsis alert worked worse at one hospital than promised."
+    },
+    {
+      "id": "C5-09",
+      "chapter": "Ch5",
+      "type": "mc",
+      "stem": "A skin-condition AI learned mostly from light skin. It may...",
+      "options": [
+        "Work equally for everyone",
+        "Work better on darker skin",
+        "Make more mistakes on darker skin"
+      ],
+      "answer": 2,
+      "explanation": "AI works for people in the data and fails the rest."
+    },
+    {
+      "id": "C5-10",
+      "chapter": "Ch5",
+      "type": "mc",
+      "stem": "Using past spending to find the sickest patients can miss people who...",
+      "options": [
+        "Had less access to care",
+        "Spent the most",
+        "Visit often"
+      ],
+      "answer": 0,
+      "explanation": "Cost is not need. Measure what you mean."
+    },
+    {
+      "id": "C5-11",
+      "chapter": "Ch5",
+      "type": "mc",
+      "stem": "Before trusting AI, ask: who is ___ from the data?",
+      "options": [
+        "Paying",
+        "Missing",
+        "Famous"
+      ],
+      "answer": 1,
+      "explanation": "Uninsured and rural patients are often left out."
+    },
+    {
+      "id": "C5-12",
+      "chapter": "Ch5",
+      "type": "tf",
+      "stem": "True or false: Addiction treatment records have extra privacy protection beyond HIPAA.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "True. A federal rule (42 CFR Part 2) adds protection."
+    },
+    {
+      "id": "C5-13",
+      "chapter": "Ch5",
+      "type": "mc",
+      "stem": "Before buying an AI tool, which question protects patients most?",
+      "options": [
+        "How fast is it?",
+        "Does it have a mobile app?",
+        "Does patient data leave our system?"
+      ],
+      "answer": 2,
+      "explanation": "Ask who sees the data, where it goes, and whether patients agreed."
+    },
+    {
+      "id": "C9-01",
+      "chapter": "Ch9",
+      "type": "mc",
+      "stem": "People usually adopt a new tool if it's...",
+      "options": [
+        "Useful and easy to use",
+        "Expensive",
+        "Brand new"
+      ],
+      "answer": 0,
+      "explanation": "These two questions guided adoption of older tools."
+    },
+    {
+      "id": "C9-02",
+      "chapter": "Ch9",
+      "type": "mc",
+      "stem": "Old tools stay the same. AI can...",
+      "options": [
+        "Never change",
+        "Change as it learns from new data",
+        "Read your mind"
+      ],
+      "answer": 1,
+      "explanation": "Old tools: you adapt to them. AI adapts to you."
+    },
+    {
+      "id": "C9-03",
+      "chapter": "Ch9",
+      "type": "mc",
+      "stem": "We can print every number inside an AI, but we can't...",
+      "options": [
+        "Count them",
+        "Store them",
+        "Read what they mean"
+      ],
+      "answer": 2,
+      "explanation": "The black box isn't hidden. It's unreadable."
+    },
+    {
+      "id": "C9-04",
+      "chapter": "Ch9",
+      "type": "mc",
+      "stem": "An AI-supported decision goes wrong. Who is responsible?",
+      "options": [
+        "The people who decided",
+        "The AI",
+        "No one"
+      ],
+      "answer": 0,
+      "explanation": "AI is a tool. You stay responsible."
+    },
+    {
+      "id": "C9-05",
+      "chapter": "Ch9",
+      "type": "mc",
+      "stem": "Accepting every AI answer without checking is...",
+      "options": [
+        "Good teamwork",
+        "Over-reliance",
+        "Smart trust"
+      ],
+      "answer": 1,
+      "explanation": "Trust should match how reliable the AI really is."
+    },
+    {
+      "id": "C9-06",
+      "chapter": "Ch9",
+      "type": "mc",
+      "stem": "Good trust in AI means...",
+      "options": [
+        "Always trust it",
+        "Never use it",
+        "Trust it when it's reliable; say no when it's not"
+      ],
+      "answer": 2,
+      "explanation": "Not more trust. The right amount."
+    },
+    {
+      "id": "C9-07",
+      "chapter": "Ch9",
+      "type": "mc",
+      "stem": "When evidence is thin, a good AI should...",
+      "options": [
+        "Say \"I don't know\"",
+        "Guess confidently",
+        "Repeat its last answer"
+      ],
+      "answer": 0,
+      "explanation": "A good partner names what's missing and leaves the call to you."
+    },
+    {
+      "id": "C9-08",
+      "chapter": "Ch9",
+      "type": "mc",
+      "stem": "Which question needs the most care with a chatbot?",
+      "options": [
+        "\"What is blood pressure?\"",
+        "\"Can I double my dose tonight?\"",
+        "\"How do I spell hypertension?\""
+      ],
+      "answer": 1,
+      "explanation": "High stakes plus a confident wrong answer can cause real harm."
+    },
+    {
+      "id": "C9-09",
+      "chapter": "Ch9",
+      "type": "mc",
+      "stem": "Which is a healthy AI habit?",
+      "options": [
+        "Take the first answer",
+        "Ask until it agrees with you",
+        "Ask why, check another source, decide yourself"
+      ],
+      "answer": 2,
+      "explanation": "The AI makes the dish. You taste it before serving."
+    },
+    {
+      "id": "C9-10",
+      "chapter": "Ch9",
+      "type": "tf",
+      "stem": "True or false: If AI feels like a partner, it shares responsibility for decisions.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "False. It feels like a partner, but it's a tool."
+    }
+  ]
+}
