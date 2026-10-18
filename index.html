@@ -38,6 +38,7 @@
   --wrong: #e39a85; --wrong-bg: #3a2420; color-scheme: dark;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body {
   background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
@@ -115,7 +116,7 @@ a { color: var(--accent); }
     <div class="card" style="gap:20px">
       <p class="eyebrow">For students and health professionals</p>
       <h1>Calm About AI: How Ready Are You?</h1>
-      <p class="lede">A 3-minute check of your everyday AI habits. Based on the textbook <i>AI in Public Health</i> by Min Wu (Springer, 2026).</p>
+      <p class="lede">A 3-minute check of your everyday AI habits. Based on the textbook <i>Artificial Intelligence in Public Health</i> by Min Wu (Springer, 2026).</p>
       <div class="facts"><span>15 questions</span><span>About 3 minutes</span><span>A short takeaway after each answer</span></div>
       <button class="btn" id="go" type="button" disabled>Loading questions…</button>
       <p class="note" id="note">An informal self-check, not a formal assessment.</p>

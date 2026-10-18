@@ -1,7 +1,7 @@
 {
   "bank_version": "0.2",
   "title": "Calm About AI: How Ready Are You?",
-  "subtitle": "A 3-minute check of your everyday AI habits. Based on the textbook AI in Public Health by Min Wu (Springer, 2026).",
+  "subtitle": "A 3-minute check of your everyday AI habits. Based on the textbook Artificial Intelligence in Public Health by Min Wu (Springer, 2026).",
   "note": "An informal self-check, not a formal assessment.",
   "draw_per_test": {
     "Ch1": 1,
